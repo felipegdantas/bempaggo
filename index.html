@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <script src="/vue.js"> </script>
+        <script src="https://kit.fontawesome.com/06d46b2455.js" crossorigin="anonymous"></script>
+        <title>Document</title>
+        <link rel="stylesheet" type="text/css" href="/style.css"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+            <div id="app">
+                <div id="header" style="background-color: #2F3576;">
+                    <h2 style="color: white;">Formulário<br> para compra de <br> <b>Pacote de adesivos</b></h2>
+                    <i class="fa-solid fa-box-open fa-8x" style="color: #181746;"></i>
+                </div>
+                <div id="typeSelect">
+                    <h3>Quais adesivos:</h3>
+                    <input type="checkbox" name="React" id="react" value=" React" v-model="selecionados"> React<br>
+                    <input type="checkbox" name="React" id="vue" value=" Vue" v-model="selecionados"> Vue <br>        
+                    <input type="checkbox" name="React" id="angular" value=" Angular" v-model="selecionados"> Angular <br>       
+                </div>
+
+                <div id="amountSelect">
+                    <h3>Quantos adesivos de cada?</h3>
+                    <input type="button" @click="diminuirTotal" value="-">  
+                    <input type="number" :value="total" size="5">
+                    <input type="button" @click="aumentarTotal" value="+">
+                </div>
+                
+                <div id="obs">
+                    <h3>Observações:</h3>
+                    <textarea name="obs" id="obs" cols="500" rows="7" v-model="obs" placeholder=" &nbsp;Alguma informação adicional? Recado ou Observação?"></textarea>
+                </div>
+
+                <div id="buy">
+                    <div>
+                        <h3>Formas de Pagamento:</h3>
+                        <ul>
+                            <li>
+                                <i class="fa-brands fa-cc-mastercard fa-2x"></i>                    
+                            </li>
+                            <li>
+                                <i class="fa-brands fa-cc-visa fa-2x"></i>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-barcode fa-2x"></i>
+                            </li>
+                            <li>
+                                <i class="fa-brands fa-pix fa-2x"></i>
+                            </li>                            
+                        </ul>
+                    </div>
+
+                    <div>
+                        <input type="submit" @click="finalizarCompra" value="Finalizar Compra">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            const vm = {
+                data() {
+                    return{
+                        obs: [],
+                        selecionados: [],                        
+                        total: 0                        
+                    }
+                },
+                methods: {
+                    diminuirTotal() {
+                        this.total--
+                    },
+                    aumentarTotal() {
+                        this.total++
+                    },
+                    finalizarCompra() {
+                        alert('Adesivos selecionados: ' + this.selecionados + '\nQuantidade de adesivos: ' + this.total + '\n Pedido feito com sucesso!')
+                    }
+
+                }
+            }
+        Vue.createApp(vm).mount('#app')
+
+        </script>
+    </body>
+</html>
